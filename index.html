@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KAD.KAWEN — Kad Kahwin Digital & Cetak</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:#352d2d;background:#fffaf8}
+header{position:sticky;top:0;z-index:10;background:rgba(255,250,248,.95);backdrop-filter:blur(8px);border-bottom:1px solid #eee}
+.nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:24px;font-weight:800;letter-spacing:1px}.nav a{text-decoration:none;color:#352d2d;margin-left:20px;font-size:14px}
+.hero{padding:85px 20px;text-align:center;background:linear-gradient(135deg,#f7e8e3,#fffaf8)}
+.hero h1{font-size:48px;margin:0 0 14px}.hero p{font-size:18px;color:#6d6161;max-width:650px;margin:0 auto 28px;line-height:1.6}
+.btn{display:inline-block;background:#352d2d;color:white;text-decoration:none;border-radius:999px;padding:14px 24px;font-weight:700;border:0;cursor:pointer}
+section{max-width:1100px;margin:auto;padding:65px 20px}.title{text-align:center;margin-bottom:35px}.title h2{font-size:32px;margin:0 0 8px}.title p{color:#766a6a}
+.filters{text-align:center;margin-bottom:25px}.filter{border:1px solid #ddd;background:white;border-radius:999px;padding:9px 15px;margin:4px;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:white;border:1px solid #eee;border-radius:18px;overflow:hidden;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.preview{height:300px;background:#eee;display:flex;align-items:center;justify-content:center;color:#888;text-align:center;padding:20px}
+.card img{width:100%;height:300px;object-fit:cover}.info{padding:18px}.info h3{margin:0 0 7px}.price{font-weight:800;margin-bottom:15px}
+.order{background:#f7e8e3}.form{max-width:760px;margin:auto;background:white;padding:28px;border-radius:20px;box-shadow:0 10px 35px rgba(0,0,0,.06)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:15px}label{display:block;font-size:14px;font-weight:700;margin:12px 0 6px}input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;font:inherit}textarea{min-height:100px}
+.note{font-size:13px;color:#766a6a;line-height:1.5;margin:15px 0}.submit{width:100%;margin-top:18px}
+footer{text-align:center;padding:35px 20px;color:#766a6a;font-size:14px}
+@media(max-width:750px){.grid{grid-template-columns:1fr 1fr}.hero h1{font-size:38px}.row{grid-template-columns:1fr}.nav a{margin-left:8px}}
+@media(max-width:520px){.grid{grid-template-columns:1fr}.preview,.card img{height:360px}}
+</style>
+</head>
+<body>
+<header><div class="nav">
+<div class="logo">KAD.KAWEN</div>
+<nav><a href="#design">Design</a><a href="#order">Order</a></nav>
+</div></header>
+
+<div class="hero">
+<h1>KAD.KAWEN</h1>
+<p>Pilih design kad kahwin pilihan anda, isi semua details majlis dan terus hantar order melalui WhatsApp.</p>
+<a class="btn" href="#design">Lihat Semua Design</a>
+</div>
+
+<section id="design">
+<div class="title"><h2>Design Kad Kahwin</h2><p>Pilih design yang anda suka.</p></div>
+<div class="filters">
+<button class="filter" onclick="filterCards('all')">Semua</button>
+<button class="filter" onclick="filterCards('minimalis')">Minimalis</button>
+<button class="filter" onclick="filterCards('floral')">Floral</button>
+<button class="filter" onclick="filterCards('elegant')">Elegant</button>
+</div>
+<div class="grid" id="gallery">
+<!-- Gambar template sebenar boleh dimasukkan di sini selepas anda upload. -->
+<div class="card" data-cat="minimalis"><div class="preview">TEMPLATE 001<br>Upload gambar design di sini</div><div class="info"><h3>KDW-001</h3><div class="price">RM —</div><button class="btn" onclick="selectDesign('KDW-001')">Pilih Design</button></div></div>
+<div class="card" data-cat="floral"><div class="preview">TEMPLATE 002<br>Upload gambar design di sini</div><div class="info"><h3>KDW-002</h3><div class="price">RM —</div><button class="btn" onclick="selectDesign('KDW-002')">Pilih Design</button></div></div>
+<div class="card" data-cat="elegant"><div class="preview">TEMPLATE 003<br>Upload gambar design di sini</div><div class="info"><h3>KDW-003</h3><div class="price">RM —</div><button class="btn" onclick="selectDesign('KDW-003')">Pilih Design</button></div></div>
+</div>
+</section>
+
+<section class="order" id="order">
+<div class="title"><h2>Isi Details Order</h2><p>Lengkapkan maklumat di bawah. Bila tekan hantar, WhatsApp akan dibuka dengan semua details anda.</p></div>
+<form class="form" onsubmit="sendWhatsApp(event)">
+<label>Design dipilih</label><input id="designName" name="design" value="" placeholder="Contoh: KDW-001" required>
+
+<div class="row">
+<div><label>Nama Pengantin Lelaki</label><input name="lelaki" required></div>
+<div><label>Nama Pengantin Perempuan</label><input name="perempuan" required></div>
+</div>
+
+<div class="row">
+<div><label>Tarikh Majlis</label><input type="date" name="tarikh" required></div>
+<div><label>Masa Majlis</label><input type="time" name="masa" required></div>
+</div>
+
+<label>Nama Lokasi / Dewan</label><input name="lokasi" required>
+<label>Alamat Majlis</label><textarea name="alamat" required></textarea>
+
+<div class="row">
+<div><label>Nama Ibu & Bapa Pengantin Lelaki</label><input name="ibu_bapa_lelaki"></div>
+<div><label>Nama Ibu & Bapa Pengantin Perempuan</label><input name="ibu_bapa_perempuan"></div>
+</div>
+
+<div class="row">
+<div><label>Jumlah Kad</label><input name="jumlah" type="number" min="1"></div>
+<div><label>Warna Pilihan</label><input name="warna" placeholder="Contoh: Dusty Pink"></div>
+</div>
+
+<label>Nombor Telefon</label><input name="telefon" type="tel" required>
+<label>Wording / Ayat Tambahan</label><textarea name="wording"></textarea>
+<label>Nota Tambahan</label><textarea name="nota"></textarea>
+
+<div class="note">Semak semua maklumat sebelum menghantar. WhatsApp anda akan dibuka untuk anda semak dan hantar mesej kepada KAD.KAWEN.</div>
+<button class="btn submit" type="submit">💚 Hantar Order Ke WhatsApp</button>
+</form>
+</section>
+
+<footer>KAD.KAWEN • Tempahan kad kahwin melalui WhatsApp</footer>
+
+<script>
+const wa = "60196441691";
+
+function selectDesign(name){
+  document.getElementById("designName").value=name;
+  document.getElementById("order").scrollIntoView({behavior:"smooth"});
+}
+function filterCards(cat){
+  document.querySelectorAll("#gallery .card").forEach(c=>{
+    c.style.display = (cat==="all" || c.dataset.cat===cat) ? "" : "none";
+  });
+}
+function sendWhatsApp(e){
+  e.preventDefault();
+  const f=e.target, d=new FormData(f);
+  const labels={
+    design:"Design", lelaki:"Pengantin Lelaki", perempuan:"Pengantin Perempuan",
+    tarikh:"Tarikh Majlis", masa:"Masa Majlis", lokasi:"Lokasi / Dewan",
+    alamat:"Alamat", ibu_bapa_lelaki:"Ibu & Bapa Pengantin Lelaki",
+    ibu_bapa_perempuan:"Ibu & Bapa Pengantin Perempuan", jumlah:"Jumlah Kad",
+    warna:"Warna", telefon:"No. Telefon", wording:"Wording / Ayat Tambahan", nota:"Nota Tambahan"
+  };
+  let msg="*ORDER KAD KAHWIN - KAD.KAWEN*%0A%0A";
+  for(const [k,v] of d.entries()){
+    if(v && v.toString().trim()) msg += "*"+labels[k]+":* "+v+"%0A";
+  }
+  window.open("https://wa.me/"+wa+"?text="+msg,"_blank");
+}
+</script>
+</body>
+</html>
